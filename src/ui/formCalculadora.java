@@ -22,6 +22,7 @@ public class formCalculadora extends javax.swing.JFrame {
 
     public formCalculadora() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
