@@ -2961,6 +2961,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         jPanelVentanaClientes.setVisible(false);
         jPanelVentanaHistorial.setVisible(false);
         jPanelVentanaUsuarios.setVisible(false);
+        JPanelProveedor3.setVisible(false);
         if (panel != null) {
             panel.setVisible(true);
         }
