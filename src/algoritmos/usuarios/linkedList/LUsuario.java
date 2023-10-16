@@ -132,6 +132,8 @@ public class LUsuario
             cabeza = cabeza.siguiente;
             first.siguiente = null;
             length--;
+        }else {
+            System.out.println("No hay nada que eliminar");
         }
     }
     
@@ -139,7 +141,7 @@ public class LUsuario
     {
         if(cabeza != null)
         {
-            if(cabeza.siguiente == null)
+            if(cabeza.siguiente == null) // Lista con un elemento
             {
                 cabeza = null;
             }else {
@@ -151,6 +153,8 @@ public class LUsuario
                 puntero.siguiente = null;
                 length--;
             }
+        }else {
+            System.out.println("No hay nada que eliminar");
         }
     }
     
@@ -172,11 +176,15 @@ public class LUsuario
                     puntero = puntero.siguiente;
                     contador++;
                 }
-                Nodo temp = puntero.siguiente;
-                puntero.siguiente  =temp.siguiente;
-                temp.siguiente  = null;
+                Nodo temp           = puntero.siguiente;
+                puntero.siguiente   = temp.siguiente;
+                temp.siguiente      = null;
                 length--;
+            }else {
+                System.out.println("Usuario no existe");
             }
+        }else {
+            System.out.println("Lista vacía");
         }
     }
     

@@ -6,10 +6,10 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String telefono;
-    private String edad;
+    private int edad;
     private String sexo;
 
-    public Usuario(Integer codigo, String usuario, String contraseña, String nombre, String apellido, String telefono, String edad, String sexo) {
+    public Usuario(Integer codigo, String usuario, String contraseña, String nombre, String apellido, String telefono, int edad, String sexo) {
         this.codigo = codigo;
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -68,11 +68,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 

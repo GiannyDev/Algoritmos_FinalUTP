@@ -743,7 +743,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
+                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbxBuscarProductoVenta, 0, 210, Short.MAX_VALUE)
@@ -760,7 +760,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(btnBuscarCliente)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 659, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBoleta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,7 +768,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnAñadirProducto)
-                        .addContainerGap(662, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -842,7 +842,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1859,7 +1859,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnInsertEndUser, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                     .addComponent(txtIndex1))
-                .addGap(28, 28, 28))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1895,7 +1895,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnDeleteAfterUser.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        btnDeleteAfterUser.setText("Eliminar Después de");
+        btnDeleteAfterUser.setText("Eliminar indice");
         btnDeleteAfterUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteAfterUserActionPerformed(evt);
@@ -1908,13 +1908,13 @@ public class formMenuPrincipal extends javax.swing.JFrame {
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnDeleteAfterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDeleteEndUser, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(txtIndex2))
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteAfterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtIndex2)
+                    .addComponent(btnDeleteEndUser, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel33Layout.setVerticalGroup(
@@ -2058,7 +2058,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(rbtnMasculino)
                     .addComponent(rbtnFemenino))
                 .addGap(18, 18, 18)
-                .addComponent(btnShow, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(btnShow, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2072,9 +2072,9 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPaneUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 1164, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2445,8 +2445,8 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String clave = txtContra.getText();
         String telefono = txtTelefono.getText();
-        String edad = txtEdad.getText();
-
+        int edad = Integer.parseInt(txtEdad.getText());
+        
         Usuario nuevo = new Usuario(IdUser, usuario, clave, nombre, apellido, telefono, edad, seleccion);
 
         listU.insertFirst(nuevo);
@@ -2511,7 +2511,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String clave = txtContra.getText();
         String telefono = txtTelefono.getText();
-        String edad = txtEdad.getText();
+        int edad = Integer.parseInt(txtEdad.getText());
 
         Usuario nuevo = new Usuario(IdUser, usuario, clave, nombre, apellido, telefono, edad, seleccion);
 
@@ -2542,7 +2542,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         String usuario = txtUsuario.getText();
         String clave = txtContra.getText();
         String telefono = txtTelefono.getText();
-        String edad = txtEdad.getText();
+        int edad = Integer.parseInt(txtEdad.getText());
 
         int index = Integer.parseInt(txtIndex1.getText());
 

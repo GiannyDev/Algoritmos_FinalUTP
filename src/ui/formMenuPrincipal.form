@@ -1054,7 +1054,7 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel35" pref="235" max="32767" attributes="0"/>
+                                      <Component id="jLabel35" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1077,7 +1077,7 @@
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="659" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel32" min="-2" pref="109" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtBoleta" min="-2" pref="88" max="-2" attributes="0"/>
@@ -1086,7 +1086,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnAñadirProducto" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="662" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1260,7 +1260,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="587" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -3036,14 +3036,14 @@
                               <Component id="jPanel34" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jPanel5" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jPanel33" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jPanel33" max="32767" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnActualizarUsuario" min="-2" pref="220" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPaneUsuarios" alignment="1" min="-2" pref="1164" max="-2" attributes="0"/>
+                                  <Component id="jScrollPaneUsuarios" min="-2" pref="1164" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                           </Group>
@@ -3133,7 +3133,7 @@
                                       <Component id="btnInsertEndUser" alignment="0" pref="213" max="32767" attributes="0"/>
                                       <Component id="txtIndex1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <EmptySpace pref="28" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3210,14 +3210,14 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnDeleteAfterUser" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="btnDeleteUser" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnDeleteUser" max="32767" attributes="0"/>
+                                      <Component id="btnDeleteAfterUser" pref="203" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnDeleteEndUser" alignment="0" pref="181" max="32767" attributes="0"/>
-                                      <Component id="txtIndex2" alignment="0" max="32767" attributes="0"/>
+                                  <EmptySpace pref="46" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtIndex2" max="32767" attributes="0"/>
+                                      <Component id="btnDeleteEndUser" pref="214" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -3269,7 +3269,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="18" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Eliminar Despu&#xe9;s de"/>
+                            <Property name="text" type="java.lang.String" value="Eliminar indice"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteAfterUserActionPerformed"/>
@@ -3387,7 +3387,7 @@
                                       <Component id="rbtnFemenino" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnShow" pref="84" max="32767" attributes="0"/>
+                                  <Component id="btnShow" pref="95" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
