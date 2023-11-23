@@ -5,6 +5,8 @@ import code.Cliente;
 import code.DetalleVenta;
 import Dao.ClienteDao;
 import Dao.ProductoDao;
+import Recursividad.Nodo;
+import Recursividad.Pila;
 import algoritmos.clientes.busqueda.BusquedaBinaria;
 import algoritmos.clientes.busqueda.BusquedaSecuencial;
 import algoritmos.clientes.ordenamiento.MetodoSeleccion;
@@ -23,6 +25,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class formMenuPrincipal extends javax.swing.JFrame {
@@ -42,6 +45,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
 
     int IdUser = 0;
 
+    
     // Hash
     DefaultTableModel hashModel = new DefaultTableModel();
     int clave = 0;
@@ -49,6 +53,19 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     String nom = null;
     String ape = null;
     String tel = null;
+    
+    //Variable Recursividad
+    
+     int ContNumMov = 0;
+    Pila PilaTorreA;
+    Pila PilaTorreB;
+    Pila PilaTorreC;
+    DefaultTableModel ModeloTablaTorreA, ModeloTablaTorreB, ModeloTablaTorreC;
+    int Objetivo = 0;
+    double NumMinMov = 0;
+    boolean Stop = false;
+    
+    
 
     public formMenuPrincipal() {
         initComponents();
@@ -68,6 +85,30 @@ public class formMenuPrincipal extends javax.swing.JFrame {
 
         // Ventana Cliente
         cargarTablaClientes(null);
+        
+        // Ventana Recursividad
+        ModeloTablaTorreA = (DefaultTableModel) torrea.getModel();
+        ModeloTablaTorreA.setRowCount(10);
+
+        ModeloTablaTorreB = (DefaultTableModel) torreb.getModel();
+        ModeloTablaTorreB.setRowCount(10);
+
+        ModeloTablaTorreC = (DefaultTableModel) torrec.getModel();
+        ModeloTablaTorreC.setRowCount(10);
+
+        DefaultTableCellRenderer renderA = new DefaultTableCellRenderer();
+        renderA.setHorizontalAlignment(SwingConstants.CENTER);
+        torrea.getColumnModel().getColumn(0).setCellRenderer(renderA);
+
+        DefaultTableCellRenderer renderB = new DefaultTableCellRenderer();
+        renderB.setHorizontalAlignment(SwingConstants.CENTER);
+        torreb.getColumnModel().getColumn(0).setCellRenderer(renderB);
+
+        DefaultTableCellRenderer renderC = new DefaultTableCellRenderer();
+        renderC.setHorizontalAlignment(SwingConstants.CENTER);
+        torrec.getColumnModel().getColumn(0).setCellRenderer(renderC);
+
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -88,6 +129,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         btnProveedor = new javax.swing.JButton();
         btnHash = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnRecursividad = new javax.swing.JButton();
         Ventanas = new javax.swing.JPanel();
         jPanelVentanaProductos = new javax.swing.JPanel();
         jScrollPaneProductos = new javax.swing.JScrollPane();
@@ -282,6 +324,28 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         txtConsola = new javax.swing.JTextField();
         JScrollPaneHash = new javax.swing.JScrollPane();
         jTableHash = new javax.swing.JTable();
+        jPanelRecursividad = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        torrea = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        torreb = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        torrec = new javax.swing.JTable();
+        btnB_A = new javax.swing.JButton();
+        btnC_A = new javax.swing.JButton();
+        btnB_C = new javax.swing.JButton();
+        btnA_B = new javax.swing.JButton();
+        btnA_C = new javax.swing.JButton();
+        btnC_B = new javax.swing.JButton();
+        jLabel45 = new javax.swing.JLabel();
+        cbNumDisco = new javax.swing.JComboBox<>();
+        lbl1 = new javax.swing.JLabel();
+        lbl2 = new javax.swing.JLabel();
+        lblMinMov = new javax.swing.JLabel();
+        lblNumMov = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
+        btnReiniciar = new javax.swing.JButton();
+        btnResolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -360,7 +424,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         });
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 204, 204));
-        btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 1, 22)); // NOI18N
+        btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnCerrarSesion.setBorderPainted(false);
@@ -401,7 +465,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton1.setText("Arbol Binario");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,42 +473,46 @@ public class formMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnRecursividad.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        btnRecursividad.setText("Recursividad");
+        btnRecursividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecursividadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
         BotonesLayout.setHorizontalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BotonesLayout.createSequentialGroup()
-                .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BotonesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHash, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnHistorial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnProductos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnCalculadora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnProveedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(BotonesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
-                        .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(BotonesLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel2)))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jLabel1)
+                    .addGroup(BotonesLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2)))
+                .addGap(23, 23, 23))
+            .addGroup(BotonesLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotonesLayout.createSequentialGroup()
+                            .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnCalculadora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                    .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(btnProductos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(btnHistorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnHash, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(2, 2, 2))
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(btnRecursividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         BotonesLayout.setVerticalGroup(
             BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,27 +521,29 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCalculadora, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHash, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnCalculadora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnHash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnRecursividad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Ventanas.setBackground(new java.awt.Color(79, 79, 79));
@@ -849,7 +919,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbxBuscarProductoVenta, 0, 210, Short.MAX_VALUE)
@@ -866,7 +936,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(btnBuscarCliente)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBoleta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -903,6 +973,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         );
 
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel15.setFocusCycleRoot(true);
 
         tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -944,7 +1015,9 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1294,7 +1367,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addComponent(txtSexoRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                 .addGap(13, 13, 13)
                                 .addComponent(txtDireccionRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -2164,7 +2237,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(rbtnMasculino)
                     .addComponent(rbtnFemenino))
                 .addGap(18, 18, 18)
-                .addComponent(btnShow, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(btnShow, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2603,6 +2676,236 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(JScrollPaneHash, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        torrea.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Torre A"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(torrea);
+
+        torreb.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Torre B"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(torreb);
+
+        torrec.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Torre C"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(torrec);
+
+        btnB_A.setText("A");
+        btnB_A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnB_AActionPerformed(evt);
+            }
+        });
+
+        btnC_A.setText("A");
+        btnC_A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnC_AActionPerformed(evt);
+            }
+        });
+
+        btnB_C.setText("C");
+        btnB_C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnB_CActionPerformed(evt);
+            }
+        });
+
+        btnA_B.setText("B");
+        btnA_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnA_BActionPerformed(evt);
+            }
+        });
+
+        btnA_C.setText("C");
+        btnA_C.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnA_CActionPerformed(evt);
+            }
+        });
+
+        btnC_B.setText("B");
+        btnC_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnC_BActionPerformed(evt);
+            }
+        });
+
+        jLabel45.setText("Número de discos");
+
+        cbNumDisco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6", "7", "8", "9", "10", " ", " ", " " }));
+        cbNumDisco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNumDiscoActionPerformed(evt);
+            }
+        });
+
+        lbl1.setText("Número min de movimientos");
+
+        lbl2.setText("Número de Movimientos");
+
+        lblMinMov.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblNumMov.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+
+        btnReiniciar.setText("Reiniciar");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
+
+        btnResolver.setText("Resolver");
+        btnResolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResolverActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelRecursividadLayout = new javax.swing.GroupLayout(jPanelRecursividad);
+        jPanelRecursividad.setLayout(jPanelRecursividadLayout);
+        jPanelRecursividadLayout.setHorizontalGroup(
+            jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursividadLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRecursividadLayout.createSequentialGroup()
+                        .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl1))
+                        .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(lblMinMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(lblNumMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRecursividadLayout.createSequentialGroup()
+                        .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursividadLayout.createSequentialGroup()
+                                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                                        .addComponent(btnA_B, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnA_C, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                                        .addComponent(btnB_A, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnB_C, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(170, 170, 170)))
+                        .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cbNumDisco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRecursividadLayout.createSequentialGroup()
+                                .addComponent(btnC_A, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnC_B, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRecursividadLayout.createSequentialGroup()
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnResolver, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65))
+        );
+        jPanelRecursividadLayout.setVerticalGroup(
+            jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursividadLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanelRecursividadLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnB_A)
+                        .addComponent(btnA_C))
+                    .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnC_A)
+                        .addComponent(btnB_C))
+                    .addComponent(btnC_B)
+                    .addComponent(btnA_B))
+                .addGap(58, 58, 58)
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbNumDisco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMinMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl2)
+                    .addComponent(lblNumMov, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanelRecursividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciar)
+                    .addComponent(btnReiniciar)
+                    .addComponent(btnResolver))
+                .addGap(20, 20, 20))
+        );
+
         javax.swing.GroupLayout VentanasLayout = new javax.swing.GroupLayout(Ventanas);
         Ventanas.setLayout(VentanasLayout);
         VentanasLayout.setHorizontalGroup(
@@ -2641,6 +2944,11 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addGap(410, 410, 410)
                     .addComponent(jPanelHash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(410, 410, 410)))
+            .addGroup(VentanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VentanasLayout.createSequentialGroup()
+                    .addGap(568, 568, 568)
+                    .addComponent(jPanelRecursividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(568, 568, 568)))
         );
         VentanasLayout.setVerticalGroup(
             VentanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2678,6 +2986,11 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addGap(156, 156, 156)
                     .addComponent(jPanelHash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(157, 157, 157)))
+            .addGroup(VentanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VentanasLayout.createSequentialGroup()
+                    .addGap(210, 210, 210)
+                    .addComponent(jPanelRecursividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(211, 211, 211)))
         );
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
@@ -2699,7 +3012,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 1857, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 1857, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3204,7 +3517,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHashActionPerformed
-        // TODO add your handling code here:
+        
         abrirPanel(jPanelHash);
     }//GEN-LAST:event_btnHashActionPerformed
 
@@ -3251,6 +3564,55 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnRecursividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecursividadActionPerformed
+         abrirPanel(jPanelRecursividad);
+    }//GEN-LAST:event_btnRecursividadActionPerformed
+
+    private void btnB_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnB_AActionPerformed
+        MoverB_A();
+    }//GEN-LAST:event_btnB_AActionPerformed
+
+    private void btnC_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnC_AActionPerformed
+        MoverC_A();
+    }//GEN-LAST:event_btnC_AActionPerformed
+
+    private void btnB_CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnB_CActionPerformed
+        MoverB_C();
+    }//GEN-LAST:event_btnB_CActionPerformed
+
+    private void btnA_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA_BActionPerformed
+        MoverDeA_B();
+    }//GEN-LAST:event_btnA_BActionPerformed
+
+    private void btnA_CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA_CActionPerformed
+        MoverDeA_C();
+    }//GEN-LAST:event_btnA_CActionPerformed
+
+    private void btnC_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnC_BActionPerformed
+        MoverC_B();
+    }//GEN-LAST:event_btnC_BActionPerformed
+
+    private void cbNumDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNumDiscoActionPerformed
+
+    }//GEN-LAST:event_cbNumDiscoActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        Iniciar();
+        ContNumMov = 0;
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        Reiniciar();
+    }//GEN-LAST:event_btnReiniciarActionPerformed
+
+    private void btnResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResolverActionPerformed
+        if (!lblMinMov.getText().equals("")&& PilaTorreC.getContNodo() !=Objetivo) {
+            Reiniciar();
+            stop =false;
+            ResolverHanoiRecursivo(Objetivo, PilaTorreA, PilaTorreB, PilaTorreC);
+        }
+    }//GEN-LAST:event_btnResolverActionPerformed
+
     public void modificarProveedor() {
         int Codigo = Integer.parseInt(txtCodigoProv.getText());
         String Nombre = txtNombreProv.getText();
@@ -3293,6 +3655,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         jPanelVentanaUsuarios.setVisible(false);
         JPanelProveedor3.setVisible(false);
         jPanelHash.setVisible(false);
+        jPanelRecursividad.setVisible(false);
         if (panel != null) {
             panel.setVisible(true);
         }
@@ -4093,6 +4456,379 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         tel = txtTelefonoHash.getText();
     }
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Recursividad"> 
+    
+    private void Limpiar() {
+        ContNumMov = 0;
+        NumMinMov = 0;
+
+        cbNumDisco.setSelectedItem(String.valueOf(Objetivo));
+    }
+
+    private void PresentarCantMov() {
+
+        ContNumMov++;
+        lblNumMov.setText(String.valueOf(ContNumMov));
+    }
+
+    private void Reiniciar() {
+
+        try {
+
+            if (!lblMinMov.getText().equals("")) {
+
+                Limpiar();
+                Iniciar();
+
+            }
+
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+    }
+
+    private void Iniciar() {
+
+        try {
+            PilaTorreA = new Pila();
+            PilaTorreB = new Pila();
+            PilaTorreC = new Pila();
+
+            Objetivo = Integer.parseInt(cbNumDisco.getSelectedItem().toString());
+
+            NumMinMov = (Math.pow(2, Objetivo) - 1 );
+
+            lblNumMov.setText(String.valueOf(ContNumMov));
+            lblMinMov.setText(String.valueOf(String.format("%.0f", NumMinMov)));
+
+            for (int i = Objetivo; i >= 1; i--) {
+
+                Nodo Plataforma = new Nodo();
+                String Disco = "";
+
+                for (int j = i; j > 0; j--) {
+                    Disco += "#";
+                }
+
+                Plataforma.setDato(Disco);
+
+                PilaTorreA.Push(Plataforma);
+            }
+
+            PresentarTorreA();
+            PresentarTorreB();
+            PresentarTorreC();
+
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+    }
+
+    private void PresentarTorreA() {
+
+        ((DefaultTableModel) torrea.getModel()).setRowCount(0);
+
+        ModeloTablaTorreA.setRowCount(10);
+
+        Nodo K;
+
+        int RowDisco = (10 - PilaTorreA.getContNodo());
+
+        if (PilaTorreA.getContNodo() > 0) {
+
+            for (K = PilaTorreA.getCabeza(); K.getAbajo() != null; K = K.getAbajo()) {
+
+                String[] VectorNormal = {K.getDato()};
+
+                ModeloTablaTorreA.insertRow(RowDisco, VectorNormal);
+                RowDisco++;
+            }
+            if (K.getAbajo() == null) {
+                String[] VectorNormal = {K.getDato()};
+                ModeloTablaTorreA.insertRow(RowDisco, VectorNormal);
+            }
+        }
+        torrea.setModel(ModeloTablaTorreA);
+        ModeloTablaTorreA.setRowCount(10);
+    }
+
+    private void PresentarTorreB() {
+
+        ((DefaultTableModel) torreb.getModel()).setRowCount(0);
+
+        ModeloTablaTorreB.setRowCount(10);
+
+        Nodo K;
+
+        int RowDisco = (10 - PilaTorreB.getContNodo());
+
+        if (PilaTorreB.getContNodo() > 0) {
+
+            for (K = PilaTorreB.getCabeza(); K.getAbajo() != null; K = K.getAbajo()) {
+
+                String[] VectorNormal = {K.getDato()};
+
+                ModeloTablaTorreB.insertRow(RowDisco, VectorNormal);
+                RowDisco++;
+            }
+            if (K.getAbajo() == null) {
+                String[] VectorNormal = {K.getDato()};
+                ModeloTablaTorreB.insertRow(RowDisco, VectorNormal);
+            }
+        }
+        torreb.setModel(ModeloTablaTorreB);
+        ModeloTablaTorreB.setRowCount(10);
+    }
+
+    private void PresentarTorreC() {
+
+        ((DefaultTableModel) torrec.getModel()).setRowCount(0);
+
+        ModeloTablaTorreC.setRowCount(10);
+
+        Nodo K;
+
+        int RowDisco = (10 - PilaTorreC.getContNodo());
+
+        if (PilaTorreC.getContNodo() > 0) {
+
+            for (K = PilaTorreC.getCabeza(); K.getAbajo() != null; K = K.getAbajo()) {
+
+                String[] VectorNormal = {K.getDato()};
+
+                ModeloTablaTorreC.insertRow(RowDisco, VectorNormal);
+                RowDisco++;
+            }
+            if (K.getAbajo() == null) {
+                String[] VectorNormal = {K.getDato()};
+                ModeloTablaTorreC.insertRow(RowDisco, VectorNormal);
+            }
+        }
+        torrec.setModel(ModeloTablaTorreC);
+        ModeloTablaTorreC.setRowCount(10);
+    }
+
+    private void MoverDeA_B() {
+
+        try {
+
+            if (PilaTorreA.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreA.Peek());
+                if (PilaTorreB.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreB.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreA.Pop();
+                PilaTorreB.Push(Plataforma);
+
+                PresentarTorreA();
+                PresentarTorreB();
+                PresentarCantMov();
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+    }
+
+    private void MoverDeA_C() {
+
+        try {
+
+            if (PilaTorreA.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreA.Peek());
+                if (PilaTorreC.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreC.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreA.Pop();
+                PilaTorreC.Push(Plataforma);
+
+                PresentarTorreA();
+                PresentarTorreC();
+                PresentarCantMov();
+
+                if (PilaTorreC.getContNodo() == Objetivo && ContNumMov == NumMinMov) {
+                    JOptionPane.showMessageDialog(null, "Felicidades,  has alcanzado el objetivo de mínimo de movimmiento\n\nIntenta con  otro nivel de dificultad", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
+
+                } else if (PilaTorreC.getContNodo() == Objetivo && ContNumMov != NumMinMov) {
+                    JOptionPane.showMessageDialog(null, "Felicidades lo has resuelto \n\nIntenta superar el objetivo mínimo de movimientos", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+    }
+
+    private void MoverB_A() {
+
+        try {
+
+            if (PilaTorreB.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreB.Peek());
+                if (PilaTorreA.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreA.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreB.Pop();
+                PilaTorreA.Push(Plataforma);
+
+                PresentarTorreB();
+                PresentarTorreA();
+                PresentarCantMov();
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+
+    }
+
+    private void MoverB_C() {
+
+        try {
+
+            if (PilaTorreB.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreB.Peek());
+                if (PilaTorreC.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreC.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreB.Pop();
+                PilaTorreC.Push(Plataforma);
+
+                PresentarTorreB();
+                PresentarTorreC();
+                PresentarCantMov();
+
+                if (PilaTorreC.getContNodo() == Objetivo && ContNumMov == NumMinMov) {
+                    JOptionPane.showMessageDialog(null, "Felicidades, has alcanzado el objetivo de mínimo de movimiento\n\nIntenta con otro nivel de dificultad", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
+
+                } else if (PilaTorreC.getContNodo() == Objetivo && ContNumMov != NumMinMov) {
+                    JOptionPane.showMessageDialog(null, "Felicidades lo has resuelto \n\nIntenta superar el objetivo mínimo de movimientos", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+
+    }
+
+    private void MoverC_A() {
+
+        try {
+
+            if (PilaTorreC.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreC.Peek());
+                if (PilaTorreA.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreA.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreC.Pop();
+                PilaTorreA.Push(Plataforma);
+
+                PresentarTorreA();
+                PresentarTorreC();
+                PresentarCantMov();
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+
+    }
+
+    private void MoverC_B() {
+        try {
+
+            if (PilaTorreC.getContNodo() > 0) {
+                Nodo Plataforma = new Nodo();
+                Plataforma.setDato(PilaTorreC.Peek());
+                if (PilaTorreB.getContNodo() > 0) {
+                    if (Plataforma.getDato().compareTo(PilaTorreB.Peek()) > 0) {
+                        return;
+                    }
+
+                }
+                PilaTorreC.Pop();
+                PilaTorreB.Push(Plataforma);
+
+                PresentarTorreB();
+                PresentarTorreC();
+                PresentarCantMov();
+
+            }
+        } catch (Exception E) {
+            System.out.println("Error: " + E.getMessage());
+        }
+    }
+    
+     boolean stop = false;
+
+    private void MoverPlataforma(Pila Origen, Pila Destino) {
+        if (stop == false) {
+            Nodo Plataforma = new Nodo();
+            Plataforma.setDato(Origen.Peek());
+            Origen.Pop();
+
+            Destino.Push(Plataforma);
+
+            PresentarTorreA();
+            PresentarTorreB();
+            PresentarTorreC();
+            PresentarCantMov();
+
+            JOptionPane pane = new JOptionPane("Paso # " + lblNumMov.getText() + "\n\n¿Continuar?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+
+            JDialog dialog = pane.createDialog("Número de pasos");
+
+            dialog.setLocation(600, 400);
+
+            dialog.setVisible(true);
+
+            int opt = (int) pane.getValue();
+
+            if (opt == JOptionPane.NO_OPTION) {
+
+                stop = true;
+            }
+
+        }
+    }
+
+    private void ResolverHanoiRecursivo(int n, Pila Origen, Pila Auxiliar, Pila Destino) {
+
+        if (n == 1) {
+            MoverPlataforma(Origen, Destino);
+
+        } else {
+            ResolverHanoiRecursivo(n - 1, Origen, Destino, Auxiliar);
+            MoverPlataforma(Origen, Destino);
+            ResolverHanoiRecursivo(n - 1, Auxiliar, Origen, Destino);
+        }
+    }
+
+    
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Extras">
     private void cerrarSesion() {
@@ -4153,12 +4889,18 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane JScrollPaneHash;
     private javax.swing.JPanel Ventanas;
     private javax.swing.JButton btnAM;
+    private javax.swing.JButton btnA_B;
+    private javax.swing.JButton btnA_C;
     private javax.swing.JButton btnActualizarProducto;
     private javax.swing.JButton btnActualizarUsuario;
     private javax.swing.JLabel btnAgregarCliente1;
     private javax.swing.JButton btnAñadirProducto;
+    private javax.swing.JButton btnB_A;
+    private javax.swing.JButton btnB_C;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnC_A;
+    private javax.swing.JButton btnC_B;
     private javax.swing.JButton btnCalculadora;
     private javax.swing.JButton btnCalcularM;
     private javax.swing.JButton btnCancelarVenta;
@@ -4172,6 +4914,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarVenta;
     private javax.swing.JButton btnHash;
     private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnInsertAfterUser;
     private javax.swing.JButton btnInsertEndUser;
     private javax.swing.JButton btnInsertUser;
@@ -4185,14 +4928,18 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPlegamiento;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedor;
+    private javax.swing.JButton btnRecursividad;
     private javax.swing.JButton btnRegistrarIngreso2;
     private javax.swing.JButton btnRegistrarProducto;
     private javax.swing.JButton btnRegistrarProveedor;
+    private javax.swing.JButton btnReiniciar;
+    private javax.swing.JButton btnResolver;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVerDetalle;
     private javax.swing.JButton btnVerProveedores;
+    private javax.swing.JComboBox<String> cbNumDisco;
     private javax.swing.JComboBox<String> cbxBuscarProductoVenta;
     private javax.swing.JComboBox<String> cbxTipoBusqueda;
     private javax.swing.JComboBox<String> cbxTipoOrdenamiento;
@@ -4238,6 +4985,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -4284,6 +5032,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelHash;
+    private javax.swing.JPanel jPanelRecursividad;
     private javax.swing.JPanel jPanelVentanaClientes;
     private javax.swing.JPanel jPanelVentanaHistorial;
     private javax.swing.JPanel jPanelVentanaProductos;
@@ -4292,6 +5041,9 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollClientes;
     private javax.swing.JScrollPane jScrollDetalleVenta;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPaneHistorial;
     private javax.swing.JScrollPane jScrollPaneProductos;
@@ -4301,12 +5053,16 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTablaProveedor;
     private javax.swing.JTable jTableHash;
     private javax.swing.JTable jTableProductos;
+    private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lblActualizarCliente;
     private javax.swing.JLabel lblBorrarBusquedaVentanaCliente;
     private javax.swing.JLabel lblBuscar1;
     private javax.swing.JLabel lblBuscar2;
     private javax.swing.JLabel lblEliminarCliente;
     private javax.swing.JLabel lblLimpiarTablaCliente;
+    private javax.swing.JLabel lblMinMov;
+    private javax.swing.JLabel lblNumMov;
     private javax.swing.JLabel lblOrdenarxCodigo;
     private javax.swing.JLabel lblOrdenarxEdadCliente;
     private javax.swing.JLabel lblOrdenarxNombreCliente;
@@ -4317,6 +5073,9 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tableHistorial;
     private javax.swing.JTable tableHistorialDetalle;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTable torrea;
+    private javax.swing.JTable torreb;
+    private javax.swing.JTable torrec;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidoHash;
     private javax.swing.JTextField txtApellidoRegistroCliente;
