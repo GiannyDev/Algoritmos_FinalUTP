@@ -1,6 +1,5 @@
 package arbolBB;
 
-import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class ArbolBinario {
@@ -156,19 +155,6 @@ public class ArbolBinario {
         
         return term;
         
-    }
-
-    private void altura(NArbol aux, int nivel) {
-        if (aux != null) {
-            altura(aux.getIzq(), nivel + 1);
-            alt = nivel;
-            altura(aux.getDer(), nivel + 1);
-        }
-    }
-
-    public int getAltura() {
-        altura(raiz, 1);
-        return alt;
     }
     
      public JPanel getdibujo() {
