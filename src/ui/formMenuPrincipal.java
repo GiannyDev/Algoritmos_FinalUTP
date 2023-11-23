@@ -41,6 +41,14 @@ public class formMenuPrincipal extends javax.swing.JFrame {
 
     int IdUser = 0;
 
+    // Hash
+    DefaultTableModel hashModel = new DefaultTableModel();
+    int clave = 0;
+    int posClaveActualColision = 0;
+    String nom = null;
+    String ape = null;
+    String tel = null;
+
     public formMenuPrincipal() {
         initComponents();
         abrirPanel(null);
@@ -256,22 +264,22 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         btnCalcularM = new javax.swing.JButton();
         jPanel35 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
+        txtNombreHash = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
-        txtApellido1 = new javax.swing.JTextField();
+        txtApellidoHash = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
-        txtTelefono1 = new javax.swing.JTextField();
+        txtTelefonoHash = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
         txtClave = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnPlegamiento = new javax.swing.JButton();
+        btnAM = new javax.swing.JButton();
+        btnMitadCuadrado = new javax.swing.JButton();
         btnMultiplicacion = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         txtConsola = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JScrollPaneHash = new javax.swing.JScrollPane();
+        jTableHash = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -2177,7 +2185,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         jPanelVentanaUsuarios.setLayout(jPanelVentanaUsuariosLayout);
         jPanelVentanaUsuariosLayout.setHorizontalGroup(
             jPanelVentanaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1645, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1645, Short.MAX_VALUE)
         );
         jPanelVentanaUsuariosLayout.setVerticalGroup(
             jPanelVentanaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2377,6 +2385,11 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         txtTamañoM.setEditable(false);
 
         btnCalcularM.setText("Calcular M");
+        btnCalcularM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularMActionPerformed(evt);
+            }
+        });
 
         jPanel35.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -2390,17 +2403,47 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         jLabel44.setForeground(new java.awt.Color(255, 0, 0));
         jLabel44.setText("Clave :");
 
-        jButton1.setText("Plegamiento");
+        btnPlegamiento.setText("Plegamiento");
+        btnPlegamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlegamientoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Aritmética Modular");
+        btnAM.setText("Aritmética Modular");
+        btnAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAMActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Mitad del Cuadrado");
+        btnMitadCuadrado.setText("Mitad del Cuadrado");
+        btnMitadCuadrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMitadCuadradoActionPerformed(evt);
+            }
+        });
 
         btnMultiplicacion.setText("Multiplicación");
+        btnMultiplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiplicacionActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Colisión Lineal");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Colisión Cuadrática");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         txtConsola.setEditable(false);
 
@@ -2414,17 +2457,17 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel35Layout.createSequentialGroup()
                         .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreHash, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAM, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnPlegamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel35Layout.createSequentialGroup()
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellidoHash, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMitadCuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnMultiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
@@ -2432,7 +2475,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanel35Layout.createSequentialGroup()
                                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTelefonoHash, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel35Layout.createSequentialGroup()
                                 .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2452,21 +2495,21 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2))
+                        .addComponent(txtNombreHash, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                        .addComponent(btnPlegamiento)
+                        .addComponent(btnAM))
                     .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtApellido1)
+                        .addComponent(txtApellidoHash)
                         .addComponent(btnMultiplicacion)
-                        .addComponent(jButton3))
+                        .addComponent(btnMitadCuadrado))
                     .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTelefono1)
+                        .addComponent(txtTelefonoHash)
                         .addComponent(jButton6)
                         .addComponent(jButton5))
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2514,32 +2557,29 @@ public class formMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableHash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Index", "Nombre", "Apellido", "Teléfono"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        JScrollPaneHash.setViewportView(jTableHash);
 
         javax.swing.GroupLayout jPanelHashLayout = new javax.swing.GroupLayout(jPanelHash);
         jPanelHash.setLayout(jPanelHashLayout);
         jPanelHashLayout.setHorizontalGroup(
             jPanelHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addComponent(JScrollPaneHash)
         );
         jPanelHashLayout.setVerticalGroup(
             jPanelHashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHashLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JScrollPaneHash, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout VentanasLayout = new javax.swing.GroupLayout(Ventanas);
@@ -3038,7 +3078,6 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
 
         showUsuarios();
-
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void txtNombreProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProvActionPerformed
@@ -3147,6 +3186,41 @@ public class formMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         abrirPanel(jPanelHash);
     }//GEN-LAST:event_btnHashActionPerformed
+
+    private void btnCalcularMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularMActionPerformed
+        // TODO add your handling code here:
+        calcularM();
+    }//GEN-LAST:event_btnCalcularMActionPerformed
+
+    private void btnAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAMActionPerformed
+        // TODO add your handling code here:
+        aritmeticaModular();
+    }//GEN-LAST:event_btnAMActionPerformed
+
+    private void btnPlegamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlegamientoActionPerformed
+        // TODO add your handling code here:
+        plegamiento();
+    }//GEN-LAST:event_btnPlegamientoActionPerformed
+
+    private void btnMitadCuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMitadCuadradoActionPerformed
+        // TODO add your handling code here:
+        mitadCuadrado();
+    }//GEN-LAST:event_btnMitadCuadradoActionPerformed
+
+    private void btnMultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicacionActionPerformed
+        // TODO add your handling code here:
+        multiplicacion();
+    }//GEN-LAST:event_btnMultiplicacionActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        usarColisionLineal();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        usarColisionCuadratica();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public void modificarProveedor() {
         int Codigo = Integer.parseInt(txtCodigoProv.getText());
@@ -3776,6 +3850,220 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     }
 
     // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Hash">
+    private void calcularM() {
+        int n = Integer.parseInt(txtTamañoN.getText());
+        int valorM = (int) (n * 1.11);
+        txtTamañoM.setText(String.valueOf(valorM));
+
+        jTableHash = new JTable(hashModel);
+        JScrollPaneHash.setViewportView(jTableHash);
+        hashModel.addColumn("Index");
+        hashModel.addColumn("Nombre");
+        hashModel.addColumn("Apellido");
+        hashModel.addColumn("Teléfono");
+
+        for (int i = 0; i < valorM; i++) {
+            hashModel.addRow(new Object[]{i, null, null, null});
+        }
+    }
+
+    private void aritmeticaModular() {
+        if (txtClave.getText().isEmpty() || txtNombreHash.getText().isEmpty()
+                || txtApellidoHash.getText().isEmpty() || txtTelefonoHash.getText().isEmpty()) {
+            return;
+        }
+
+        // Obtenemos clave, nom, ape, tel
+        obtenerValoresEntradaTextoVentanaHash();
+
+        int posClave = clave % Integer.parseInt(txtTamañoM.getText());
+        if (posClaveDisponible(posClave)) {
+            Object[] data = new Object[]{nom, ape, tel};
+            for (int i = 0; i < 3; i++) {
+                hashModel.setValueAt(data[i], posClave, i + 1);
+            }
+
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+        } else {
+            posClaveActualColision = posClave;
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+            JOptionPane.showMessageDialog(null, "¡COLISION!\nUtilizar colisiones disponibles");
+        }
+
+    }
+
+    private void plegamiento() {
+        if (txtClave.getText().isEmpty() || txtNombreHash.getText().isEmpty()
+                || txtApellidoHash.getText().isEmpty() || txtTelefonoHash.getText().isEmpty()) {
+            return;
+        }
+
+        // Obtenemos clave, nom, ape, tel
+        obtenerValoresEntradaTextoVentanaHash();
+        int posClave = obtenerSumaParaPlegamiento(clave, 3);
+        if (posClaveDisponible(posClave)) {
+            Object[] data = new Object[]{nom, ape, tel};
+            for (int i = 0; i < 3; i++) {
+                hashModel.setValueAt(data[i], posClave, i + 1);
+            }
+
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+        } else {
+            posClaveActualColision = posClave;
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+            JOptionPane.showMessageDialog(null, "¡COLISION!\nUtilizar colisiones disponibles");
+        }
+
+    }
+
+    private int obtenerSumaParaPlegamiento(int clave, int partes) {
+        int suma = 0;
+        String claveString = Integer.toString(clave);
+        int longitudParte = claveString.length() / partes;
+
+        // Realizar el plegamiento sumando las partes
+        for (int i = 0; i < partes; i++) {
+            // Obtener el inicio y el fin de cada parte
+            int inicio = i * longitudParte;
+            int fin = (i + 1) * longitudParte;
+
+            // Si es la última parte, el fin será el final de la clave
+            if (i == partes - 1) {
+                fin = claveString.length();
+            }
+
+            // Obtener la parte actual y sumarla
+            String parte = claveString.substring(inicio, fin);
+            int parteEntero = Integer.parseInt(parte);
+            suma += parteEntero;
+        }
+
+        return suma;
+    }
+
+    private void mitadCuadrado() {
+        if (txtClave.getText().isEmpty() || txtNombreHash.getText().isEmpty()
+                || txtApellidoHash.getText().isEmpty() || txtTelefonoHash.getText().isEmpty()) {
+            return;
+        }
+
+        // Obtenemos clave, nom, ape, tel
+        obtenerValoresEntradaTextoVentanaHash();
+
+        long cuadrado = (long) clave * (long) clave;
+        String cadena = Long.toString(cuadrado);
+        int length = cadena.length();
+        String resto = cadena.substring(length - 3);
+        System.out.println(resto);
+        int posClave = Integer.parseInt(resto) % Integer.parseInt(txtTamañoM.getText());
+
+        if (posClaveDisponible(posClave)) {
+            Object[] data = new Object[]{nom, ape, tel};
+            for (int i = 0; i < 3; i++) {
+                hashModel.setValueAt(data[i], posClave, i + 1);
+            }
+
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+        } else {
+            posClaveActualColision = posClave;
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+            JOptionPane.showMessageDialog(null, "¡COLISION!\nUtilizar colisiones disponibles");
+        }
+    }
+
+    private void multiplicacion() {
+        if (txtClave.getText().isEmpty() || txtNombreHash.getText().isEmpty()
+                || txtApellidoHash.getText().isEmpty() || txtTelefonoHash.getText().isEmpty()) {
+            return;
+        }
+
+        // Obtenemos clave, nom, ape, tel
+        obtenerValoresEntradaTextoVentanaHash();
+
+        double multi = 0.6180334 * clave;
+        double decimal = multi - Math.floor(multi);
+        int posClave = (int) (Integer.parseInt(txtTamañoM.getText()) * decimal);
+
+        if (posClaveDisponible(posClave)) {
+            Object[] data = new Object[]{nom, ape, tel};
+            for (int i = 0; i < 3; i++) {
+                hashModel.setValueAt(data[i], posClave, i + 1);
+            }
+
+            txtConsola.setText("Decimal: " + decimal + " * " + txtTamañoM.getText() + " >>>>> h(" + clave + ") = " + posClave);
+        } else {
+            posClaveActualColision = posClave;
+            txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+            JOptionPane.showMessageDialog(null, "¡COLISION!\nUtilizar colisiones disponibles");
+        }
+    }
+
+    private void usarColisionLineal() {
+        int posClave = obtenerSiguientePosClaveDisponible();
+        Object[] data = new Object[]{nom, ape, tel};
+        for (int i = 0; i < 3; i++) {
+            hashModel.setValueAt(data[i], posClave, i + 1);
+        }
+
+        txtConsola.setText("h ( " + clave + " ) -> " + posClave);
+    }
+
+    private void usarColisionCuadratica() {
+        int posClave = posClaveActualColision;
+        System.out.println(posClave);
+        int i = 2; // Valor de i^2
+        int posClaveNueva = -1;
+        
+        while (true) {
+            int nuevaPos = (posClave + (i * i)) % Integer.parseInt(txtTamañoM.getText());
+            if (posClaveDisponible(nuevaPos)) {
+                posClaveNueva = nuevaPos;
+                break;
+            }
+        }
+        
+        Object[] data = new Object[]{nom, ape, tel};
+        for (int j = 0; j < 3; j++) {
+            hashModel.setValueAt(data[j], posClaveNueva, j + 1);
+        }
+
+        txtConsola.setText("h ( " + clave + " ) -> " + posClaveNueva);
+    }
+
+    private boolean posClaveDisponible(int pos) {
+        if (hashModel.getValueAt(pos, 1) != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private int obtenerSiguientePosClaveDisponible() {
+        int posClave = 0;
+        for (int i = posClaveActualColision; i < hashModel.getRowCount(); i++) {
+            Object data = hashModel.getValueAt(i, 1);
+            if (data == null) {
+                posClave = i;
+                break;
+            } else {
+                if (i == hashModel.getRowCount() - 1) {
+                    posClaveActualColision = -1;
+                }
+            }
+        }
+
+        return posClave;
+    }
+
+    private void obtenerValoresEntradaTextoVentanaHash() {
+        clave = Integer.parseInt(txtClave.getText());
+        nom = txtNombreHash.getText();
+        ape = txtApellidoHash.getText();
+        tel = txtTelefonoHash.getText();
+    }
+
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Extras">
     private void cerrarSesion() {
         formLogin login = new formLogin();
@@ -3832,7 +4120,9 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel Botones;
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel JPanelProveedor3;
+    private javax.swing.JScrollPane JScrollPaneHash;
     private javax.swing.JPanel Ventanas;
+    private javax.swing.JButton btnAM;
     private javax.swing.JButton btnActualizarProducto;
     private javax.swing.JButton btnActualizarUsuario;
     private javax.swing.JLabel btnAgregarCliente1;
@@ -3857,10 +4147,12 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertUser;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnListarProveedor;
+    private javax.swing.JButton btnMitadCuadrado;
     private javax.swing.JButton btnModificarProveedor;
     private javax.swing.JButton btnMultiplicacion;
     private javax.swing.JButton btnNuevaCategoriaProducto;
     private javax.swing.JButton btnOrdenar;
+    private javax.swing.JButton btnPlegamiento;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedor;
     private javax.swing.JButton btnRegistrarIngreso2;
@@ -3874,9 +4166,6 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxBuscarProductoVenta;
     private javax.swing.JComboBox<String> cbxTipoBusqueda;
     private javax.swing.JComboBox<String> cbxTipoOrdenamiento;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -3972,7 +4261,6 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollClientes;
     private javax.swing.JScrollPane jScrollDetalleVenta;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPaneHistorial;
     private javax.swing.JScrollPane jScrollPaneProductos;
@@ -3980,7 +4268,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTablaProveedor;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHash;
     private javax.swing.JTable jTableProductos;
     private javax.swing.JLabel lblActualizarCliente;
     private javax.swing.JLabel lblBorrarBusquedaVentanaCliente;
@@ -3999,7 +4287,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tableHistorialDetalle;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtApellido1;
+    private javax.swing.JTextField txtApellidoHash;
     private javax.swing.JTextField txtApellidoRegistroCliente;
     private javax.swing.JTextField txtBoleta;
     private javax.swing.JTextField txtBusqueda;
@@ -4022,7 +4310,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtInput1;
     private javax.swing.JTextField txtInput2;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
+    private javax.swing.JTextField txtNombreHash;
     private javax.swing.JTextField txtNombreProv;
     private javax.swing.JTextField txtNombreRegistroCliente;
     private javax.swing.JTextField txtSexoRegistroCliente;
@@ -4030,7 +4318,7 @@ public class formMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtTamañoM;
     private javax.swing.JTextField txtTamañoN;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTelefono1;
+    private javax.swing.JTextField txtTelefonoHash;
     private javax.swing.JTextField txtTelefonoProv;
     private javax.swing.JTextField txtTelefonoRegistroCliente;
     private javax.swing.JTextField txtTotal;

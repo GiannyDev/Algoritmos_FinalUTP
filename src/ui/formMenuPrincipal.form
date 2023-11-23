@@ -3920,15 +3920,15 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JScrollPaneHash" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="JScrollPaneHash" min="-2" pref="436" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3999,6 +3999,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Calcular M"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularMActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JPanel" name="jPanel35">
                       <Properties>
@@ -4016,18 +4019,18 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel41" min="-2" pref="78" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNombre1" min="-2" pref="130" max="-2" attributes="0"/>
+                                          <Component id="txtNombreHash" min="-2" pref="130" max="-2" attributes="0"/>
                                           <EmptySpace pref="24" max="32767" attributes="0"/>
-                                          <Component id="jButton2" min="-2" pref="220" max="-2" attributes="0"/>
+                                          <Component id="btnAM" min="-2" pref="220" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="220" max="-2" attributes="0"/>
+                                          <Component id="btnPlegamiento" min="-2" pref="220" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel42" min="-2" pref="78" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtApellido1" min="-2" pref="130" max="-2" attributes="0"/>
+                                          <Component id="txtApellidoHash" min="-2" pref="130" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jButton3" min="-2" pref="220" max="-2" attributes="0"/>
+                                          <Component id="btnMitadCuadrado" min="-2" pref="220" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="btnMultiplicacion" min="-2" pref="220" max="-2" attributes="0"/>
                                       </Group>
@@ -4036,7 +4039,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel43" min="-2" pref="78" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="txtTelefono1" min="-2" pref="130" max="-2" attributes="0"/>
+                                                  <Component id="txtTelefonoHash" min="-2" pref="130" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel44" min="-2" pref="78" max="-2" attributes="0"/>
@@ -4065,25 +4068,25 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="txtNombre1" alignment="3" pref="25" max="32767" attributes="0"/>
-                                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtNombreHash" alignment="3" pref="25" max="32767" attributes="0"/>
+                                          <Component id="btnPlegamiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnAM" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel41" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="txtApellido1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="txtApellidoHash" alignment="3" max="32767" attributes="0"/>
                                           <Component id="btnMultiplicacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnMitadCuadrado" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel42" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="txtTelefono1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="txtTelefonoHash" alignment="3" max="32767" attributes="0"/>
                                           <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -4108,21 +4111,21 @@
                             <Property name="text" type="java.lang.String" value="Nombre :"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtNombre1">
+                        <Component class="javax.swing.JTextField" name="txtNombreHash">
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel42">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Apellido :"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtApellido1">
+                        <Component class="javax.swing.JTextField" name="txtApellidoHash">
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel43">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono :"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtTelefono1">
+                        <Component class="javax.swing.JTextField" name="txtTelefonoHash">
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel44">
                           <Properties>
@@ -4137,35 +4140,53 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtClave">
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton1">
+                        <Component class="javax.swing.JButton" name="btnPlegamiento">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Plegamiento"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPlegamientoActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton2">
+                        <Component class="javax.swing.JButton" name="btnAM">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Aritm&#xe9;tica Modular"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAMActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton3">
+                        <Component class="javax.swing.JButton" name="btnMitadCuadrado">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Mitad del Cuadrado"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMitadCuadradoActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnMultiplicacion">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Multiplicaci&#xf3;n"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMultiplicacionActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton5">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Colisi&#xf3;n Lineal"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton6">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Colisi&#xf3;n Cuadr&#xe1;tica"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtConsola">
                           <Properties>
@@ -4176,22 +4197,46 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                <Container class="javax.swing.JScrollPane" name="JScrollPaneHash">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="jTableHash">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="Index" type="java.lang.Object"/>
                             <Column editable="true" title="Nombre" type="java.lang.Object"/>
                             <Column editable="true" title="Apellido" type="java.lang.Object"/>
                             <Column editable="true" title="Tel&#xe9;fono" type="java.lang.Object"/>
                           </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
